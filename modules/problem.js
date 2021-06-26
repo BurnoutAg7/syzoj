@@ -206,7 +206,7 @@ app.get('/problem/:id', async (req, res) => {
     problem.allowedEdit = await problem.isAllowedEditBy(res.locals.user);
     problem.allowedManage = await problem.isAllowedManageBy(res.locals.user);
 
-    if (problem.is_public || problem.allowedEdit) {
+    if ((problem.is_public && (!problem.need_vip || await res.locals.user.hasPrivilege('is_vip'))) || problem.allowedEdit) {
       await syzoj.utils.markdown(problem, ['description', 'input_format', 'output_format', 'example', 'limit_and_hint']);
     } else {
       throw new ErrorMessage('您没有权限进行此操作。');
@@ -240,7 +240,7 @@ app.get('/problem/:id/export', async (req, res) => {
   try {
     let id = parseInt(req.params.id);
     let problem = await Problem.findById(id);
-    if (!problem || !problem.is_public) throw new ErrorMessage('无此题目。');
+    if (!problem || !(problem.is_public && (!problem.need_vip || await res.locals.user.hasPrivilege('is_vip')))) throw new ErrorMessage('无此题目。');
 
     let obj = {
       title: problem.title,
@@ -640,7 +640,8 @@ app.post('/problem/:id/submit', app.multer.fields([{ name: 'answer', maxCount: 1
         language: null,
         user_id: curUser.id,
         problem_id: id,
-        is_public: problem.is_public
+        is_public: problem.is_public,
+        need_vip: problem.need_vip
       });
     } else {
       let code;
@@ -661,7 +662,8 @@ app.post('/problem/:id/submit', app.multer.fields([{ name: 'answer', maxCount: 1
         language: req.body.language,
         user_id: curUser.id,
         problem_id: id,
-        is_public: problem.is_public
+        is_public: problem.is_public,
+        need_vip: problem.need_vip
       });
     }
 

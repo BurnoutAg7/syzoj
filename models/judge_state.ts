@@ -102,6 +102,9 @@ export default class JudgeState extends Model {
   @TypeORM.Column({ nullable: true, type: "boolean" })
   is_public: boolean;
 
+  @TypeORM.Column({ nullable: true, type: "boolean" })
+  need_vip: boolean;
+
   user?: User;
   problem?: Problem;
 
