@@ -123,6 +123,8 @@ export default class JudgeState extends Model {
 
   async isAllowedVisitBy(user) {
     await this.loadRelationships();
+    let problem = await Problem.findById(this.problem_id);
+    this.need_vip=problem.need_vip;
 
     if (user && user.id === this.problem.user_id) return true;
     else if (this.type === 0) return (this.is_public && (!this.need_vip || (this.need_vip && await user.hasPrivilege('is_vip')))) || (user && (await user.hasPrivilege('manage_problem')));
