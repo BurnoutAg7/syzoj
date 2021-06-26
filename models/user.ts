@@ -63,9 +63,6 @@ export default class User extends Model {
   @TypeORM.Column({ nullable: true, type: "integer" })
   register_time: number;
 
-  @TypeORM.Column({ nullable: true, type: "boolean", default: false })
-  is_vip: boolean;
-
   static async fromEmail(email): Promise<User> {
     return User.findOne({
       where: {
