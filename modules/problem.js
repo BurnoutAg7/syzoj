@@ -206,7 +206,7 @@ app.get('/problem/:id', async (req, res) => {
     problem.allowedEdit = await problem.isAllowedEditBy(res.locals.user);
     problem.allowedManage = await problem.isAllowedManageBy(res.locals.user);
 
-    if ((problem.is_public && (!problem.need_vip || await res.locals.user.hasPrivilege('is_vip'))) || problem.allowedEdit) {
+    if (problem.is_public || problem.allowedEdit) {
       await syzoj.utils.markdown(problem, ['description', 'input_format', 'output_format', 'example', 'limit_and_hint']);
     } else {
       throw new ErrorMessage('您没有权限进行此操作。');
