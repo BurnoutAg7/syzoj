@@ -127,7 +127,7 @@ export default class JudgeState extends Model {
     this.need_vip=problem.need_vip;
 
     if (user && user.id === this.problem.user_id) return true;
-    else if (this.type === 0) return (this.is_public && (!this.need_vip || (this.need_vip && await user.hasPrivilege('is_vip')))) || (user && (await user.hasPrivilege('manage_problem')));
+    else if (this.type === 0) return (this.is_public && (!this.need_vip || (this.need_vip && user && await user.hasPrivilege('is_vip')))) || (user && (await user.hasPrivilege('manage_problem')));
     else if (this.type === 1) {
       let contest = await Contest.findById(this.type_info);
       if (contest.isRunning()) {
