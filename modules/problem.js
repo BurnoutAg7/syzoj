@@ -349,6 +349,7 @@ app.post('/problem/:id/edit', async (req, res) => {
     problem.example = req.body.example;
     problem.limit_and_hint = req.body.limit_and_hint;
     problem.is_anonymous = (req.body.is_anonymous === 'on');
+    problem.need_vip = (req.body.need_vip == true);
 
     // Save the problem first, to have the `id` allocated
     await problem.save();
