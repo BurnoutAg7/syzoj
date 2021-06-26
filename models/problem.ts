@@ -94,6 +94,9 @@ export default class Problem extends Model {
   is_public: boolean;
 
   @TypeORM.Column({ nullable: true, type: "boolean" })
+  need_vip: boolean;
+
+  @TypeORM.Column({ nullable: true, type: "boolean" })
   file_io: boolean;
 
   @TypeORM.Column({ nullable: true, type: "text" })
@@ -131,6 +134,7 @@ export default class Problem extends Model {
 
   async isAllowedUseBy(user) {
     if (this.is_public) return true;
+    if (this.need_vip && await user.hasPrivilege('is_vip')) return true;
     if (!user) return false;
     if (await user.hasPrivilege('manage_problem')) return true;
     return this.user_id === user.id;

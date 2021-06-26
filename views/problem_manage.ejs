@@ -95,6 +95,10 @@
             <label for="additional_file">上传附加文件（请使用 ZIP 格式）</label>
             <input type="file" id="additional_file" name="additional_file">
           </div>
+          <div class="ui toggle checkbox checkbox_privilege">
+            <input id="need_vip" name="need_vip" type="checkbox"<% if (problem.need_vip == true) { %> checked<% } %>>
+            <label>高级用户</label>
+          </div>
           <button type="submit" class="ui labeled icon blue button"><i class="ui edit icon"></i>提交</button>
           <a href="<%= syzoj.utils.makeUrl(['problem', problem.id]) %>" class="ui labeled icon button"><i class="ui angle left icon"></i>返回</a>
         </form>

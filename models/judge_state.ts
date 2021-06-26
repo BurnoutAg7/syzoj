@@ -122,7 +122,7 @@ export default class JudgeState extends Model {
     await this.loadRelationships();
 
     if (user && user.id === this.problem.user_id) return true;
-    else if (this.type === 0) return this.problem.is_public || (user && (await user.hasPrivilege('manage_problem')));
+    else if (this.type === 0) return this.problem.is_public || (user && (await user.hasPrivilege('manage_problem'))) || (this.problem.need_vip && await user.hasPrivilege('is_vip'));
     else if (this.type === 1) {
       let contest = await Contest.findById(this.type_info);
       if (contest.isRunning()) {
