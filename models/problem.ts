@@ -134,8 +134,7 @@ export default class Problem extends Model {
   }
 
   async isAllowedUseBy(user) {
-    if (this.is_public) return true;
-    if (this.need_vip && await user.hasPrivilege('is_vip')) return true;
+    if (this.is_public && (!this.need_vip || (this.need_vip && await user.hasPrivilege('is_vip')))) return true;
     if (!user) return false;
     if (await user.hasPrivilege('manage_problem')) return true;
     return this.user_id === user.id;

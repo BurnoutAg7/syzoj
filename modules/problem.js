@@ -542,7 +542,7 @@ app.post('/problem/:id/manage', app.multer.fields([{ name: 'testdata', maxCount:
       }
     }
     problem.type = req.body.type;
-    problem.need_vip = req.body.need_vip;
+    problem.need_vip = (req.body.need_vip == 'on');
 
     let validateMsg = await problem.validate();
     if (validateMsg) throw new ErrorMessage('无效的题目数据配置。', null, validateMsg);
