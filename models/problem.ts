@@ -93,6 +93,7 @@ export default class Problem extends Model {
   @TypeORM.Column({ nullable: true, type: "boolean" })
   is_public: boolean;
 
+  @TypeORM.Index()
   @TypeORM.Column({ nullable: true, type: "boolean" })
   need_vip: boolean;
 
