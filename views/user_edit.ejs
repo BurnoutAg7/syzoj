@@ -58,6 +58,7 @@
       </div>
       <%
       let allowedManagePrivilege = user && user.is_admin;
+      let allowedManageVIP = user && user.hasPrivilege('manage_user');
       %>
       <div class="inline field">
         <label class="ui header">权限</label>
@@ -78,7 +79,7 @@
           <label>管理用户</label>
         </div>
         <div class="ui toggle <% if (!allowedManagePrivilege) { %>disabled <% } %>checkbox checkbox_privilege" data-name="is_vip">
-          <input <% if (!allowedManagePrivilege) { %>disabled="disabled" <% } %>type="checkbox"<% if (edited_user.privileges.includes('is_vip')) { %> checked<% } %>>
+          <input <% if (!allowedManagePrivilege&&!allowedManageVIP) { %>disabled="disabled" <% } %>type="checkbox"<% if (edited_user.privileges.includes('is_vip')) { %> checked<% } %>>
           <label>高级用户</label>
         </div>
       </div>
