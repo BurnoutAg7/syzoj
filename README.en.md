@@ -14,3 +14,6 @@ Join QQ group [565280992](https://jq.qq.com/?_wv=1027&k=5JQZWwd) or Telegram gro
 # Upgrading
 Currently, the tutorial for upgrading is only available in Chinese. It's [更新指南](https://github.com/syzoj/syzoj/wiki/%E6%9B%B4%E6%96%B0%E6%8C%87%E5%8D%97) in this project's wiki.
 
+# From BurnoutAg7
+
+See Chinese version for modifications.

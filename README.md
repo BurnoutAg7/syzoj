@@ -13,3 +13,7 @@
 
 # 升级须知
 见本项目 Wiki 中的 [更新指南](https://github.com/syzoj/syzoj/wiki/%E6%9B%B4%E6%96%B0%E6%8C%87%E5%8D%97)。
+
+# 来自BurnoutAg7
+
+尝试实现权限题，由于本人就一OIer没学过开发所以可能也会咕咕咕了。
