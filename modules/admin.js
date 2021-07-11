@@ -60,7 +60,8 @@ let configItems = {
   'page.ranklist': { name: '排行榜', type: Number },
   'page.discussion': { name: '讨论', type: Number },
   'page.article_comment': { name: '评论', type: Number },
-  'page.contest': { name: '比赛', type: Number }
+  'page.contest': { name: '比赛', type: Number },
+  'free_testdata': { name: '开放数据下载', type: Boolean }
 };
 
 app.get('/admin/config', async (req, res) => {
