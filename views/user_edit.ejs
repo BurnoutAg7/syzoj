@@ -42,7 +42,7 @@
       </div>
       <div class="field">
       <label for="information">个性签名</label>
-        <textarea class="markdown-edit" rows="5" id="information" name="information"><%= edited_user.information %></textarea>
+        <textarea <% if (edited_user.is_admin) { %> disabled="disabled"<% } %> class="markdown-edit" rows="5" id="information" name="information"><%= edited_user.information %></textarea>
       </div>
       <div class="field">
       <label class="ui header">密码</label>
