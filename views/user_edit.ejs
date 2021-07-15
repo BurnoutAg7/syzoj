@@ -41,7 +41,7 @@
         </div>
       </div>
       <%
-      let allowedEditBio = (user && user.id == edited_user.id) || !edited_user.is_admin;
+      let allowedEditBio = user && (user.id == edited_user.id || !edited_user.is_admin);
       %>
       <div class="field">
       <label for="information">个性签名</label>

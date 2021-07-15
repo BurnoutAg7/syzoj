@@ -187,7 +187,7 @@ app.post('/user/:id/edit', async (req, res) => {
       await user.setPrivileges(privileges);
     }
 
-    user.information = req.body.information;
+    if(user.id == res.locals.user.id || !user.is_admin)user.information = req.body.information;
     user.sex = req.body.sex;
     user.public_email = (req.body.public_email === 'on');
     user.prefer_formatted_code = (req.body.prefer_formatted_code === 'on');
